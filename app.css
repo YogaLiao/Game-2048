@@ -11,7 +11,7 @@ body {
 }
 
 .span {
-    flex:0.6;
+    flex:0.7;
 }
 
 .score {
@@ -27,11 +27,21 @@ body {
     justify-content: space-evenly;
     
 }
-.new,.score-board {
+.new,.score-board,.help {
     background-color: black;
     color:#ffb703;
     font-family: 'Press Start 2P', cursive;
     font-size: 1.5em;
+}
+.help, .new {
+    transition: color 0.25s, border-color 0.25s, box-shadow 0.25s
+}
+
+.help:hover,.new:hover,.help:focus,.new:focus {
+    border-color: white;
+    color: #ffb703;
+    box-shadow: 0 0.5em 0.5em -0.4em white;
+    cursor: pointer;
 }
 
 .score {
@@ -57,4 +67,21 @@ body {
     height: 10vw;;
     background-color: #ffb703;
     border: 4px dashed black;
+    text-align:center;
+    font-size: 500%;
+    color:black
+}
+
+.direction {
+    width:40vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.direc {
+    width:10vw;
+    height: 10vw;
+    font-size: 500%;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
 }
