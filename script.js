@@ -17,7 +17,8 @@ let cell16 = document.getElementById("cell16")
 let cells = document.querySelectorAll(".cell")
 console.log(cells)
 // console.log(cellList)
-
+let cellArr = Array.from(cells);
+// console.log(cellArr[2])
 let scoreText = document.querySelector(".score")
 let score = 0;
 
@@ -56,39 +57,87 @@ function leftClick(event) {
     let cellList = Array.from(cells).map(element => element.innerText)
     const row = rowCombo.map(element => element.map(x => cellList[x]))
     console.log(row)
-    row.forEach(element => {
-        if (element[0] == element[1] && element[0] !="") {
-            element[0].innerText = (Number(element[0].innerText) * 2).toString;
-            score += Number(element[0].innerText) * 2;
-            high = Number(element[0].innerText) * 2;
-            element[1] = element[2];
-            element[2] = element[3];
+    console.log(cellList)
+    console.log(row[3])
+    for (let i = 0; i < 4; i++)
+    {
+        if (row[i][0] == row[i][1] && row[i][0] !="") {
+            cellArr[i*4].innerText = (Number(row[i][0]) * 2).toString;
+            score += Number(row[i][0]) * 2;
+            high = Number(row[i][0]) * 2;
+            cellArr[(i*4 +1)].innerText = row[i][2];
+            cellArr[(i*4 +2)].innerText = row[i][3];
+            cellArr[(i*4 +3)].innerText  = "";
         } 
-        else if (element[0] == "") {
-            
+        else if (row[i][0] == "") {
+            if (row[i][1] == "" && row[i][2] == "" && row[i][3] != "") {
+                cellArr[i*4].innerText = row[i][3];
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] == "" && row[i][2] != "" && row[i][3] == row[i][2]) {
+                cellArr[i*4].innerText = (Number(row[i][2]) * 2).toString;
+                score += Number(row[i][2]) * 2;
+                high = Number(row[i][2]) * 2;
+                cellArr[(i*4 +2)].innerText  = "";
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] = "" && row[i][2] != "" && row[i][3] != row[i][2]) {
+                cellArr[i*4].innerText = row[i][2];
+                cellArr[(i*4 +1)].innerText = row[i][3];
+                cellArr[(i*4 +2)].innerText  = "";
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] != "" && row[i][2] == row[i][1]) {
+                cellArr[i*4].innerText = (Number(row[i][2]) * 2).toString;
+                score += Number(row[i][2]) * 2;
+                high = Number(row[i][2]) * 2;
+                cellArr[(i*4 +1)].innerText = row[i][3];
+                cellArr[(i*4 +2)].innerText  = "";
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] != "" && row[i][2] != row[i][1] && row[i][3] != row[i][2]) {
+                cellArr[i*4].innerText = row[i][1];
+                cellArr[(i*4 +1)].innerText = row[i][2];
+                cellArr[(i*4 +2)].innerText = row[i][3];
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] != "" && row[i][2] != row[i][1] && row[i][3] == row[i][2]) {
+                cellArr[i*4].innerText = row[i][1];
+                cellArr[(i*4 +1)].innerText = (Number(row[i][2]) * 2).toString;
+                cellArr[(i*4 +2)].innerText  = "";
+                cellArr[(i*4 +3)].innerText  = "";
+            }
+            else if (row[i][1] != "" && row[i][2] =="" && row[i][3] == row[i][1]) {
+                cellArr[i*4].innerText = (Number(row[i][1]) * 2).toString;
+                score += Number(row[i][1]) * 2;
+                high = Number(row[i][1]) * 2;
+                cellArr[(i*4 +1)].innerText  = "";
+                cellArr[(i*4 +3)].innerText  = "";
+            }
         }
-    })
+        console.log(cellList)
+    }
 }
 
 buttonLeft.addEventListener("click", leftClick)
 
-window.addEventListener("keydown", function (event) {
-    if (event.defaultPrevented) {
-      return; // Do nothing if the event was already processed
-    }
+// window.addEventListener("keydown", function (event) {
+//     if (event.defaultPrevented) {
+//       return; // Do nothing if the event was already processed
+//     }
   
-    switch (event.key) {
-      case "Left": // IE/Edge specific value
-      case "ArrowLeft":
-        // Do something for "down arrow" key press.
-        break;
-      default:
-        return; // Quit when this doesn't handle the key event.
-    }
+//     switch (event.key) {
+//       case "Left": // IE/Edge specific value
+//       case "ArrowLeft":
+//         // Do something for "down arrow" key press.
+//         break;
+//       default:
+//         return; // Quit when this doesn't handle the key event.
+//     }
   
-    // Cancel the default action to avoid it being handled twice
-    event.preventDefault();
-  }, true);
+//     // Cancel the default action to avoid it being handled twice
+//     event.preventDefault();
+//   }, true);
 
 
 
