@@ -57,7 +57,7 @@ function generateNum() {
     if (cellArr[randomNum].innerText == "") {
         let randomValue = valueList[Math.ceil(Math.random()*10)];
         // console.log(randomValue)
-        cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
+        cellArr[randomNum].innerText = Math.min(high,randomValue,64).toString()
     }
     else {
         randomNum = Math.ceil(Math.random()*15);
@@ -111,10 +111,10 @@ function goRight() {
     for (let i = 0; i < 4; i++){
         let filterArr = row[i].filter(num => num)
         console.log(filterArr)
-        for (let j = 0; j < filterArr.length;j++) {
+        for (let j = filterArr.length - 1; j >= 0;j--) {
             cellArr[(4*i+3-j)].innerText = filterArr[j]
         }
-        for (let k = 0; k < filterArr.length; k++) {
+        for (let k = 0; k < 4 - filterArr.length; k++) {
             cellArr[4*i+k].innerText = ""
         }
     }         
@@ -138,6 +138,80 @@ function combineRight() {
     }
 }
 
+//Up
+function goUp() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const column = colCombo.map(element => element.map(x => cellList[x]))
+    console.log(column)
+    console.log(cellList)
+    for (let i = 0; i < 4; i++){
+        let filterArr = column[i].filter(num => num)
+        console.log(filterArr)
+        for (let j = 0; j < filterArr.length;j++) {
+            cellArr[(4*j+i)].innerText = filterArr[j]
+        }
+        for (let k = filterArr.length; k < 4; k++) {
+            cellArr[4*k+i].innerText = ""
+        }
+    }         
+}
+
+function combineUp() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const column = colCombo.map(element => element.map(x => cellList[x]))
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (column[i][j] == column[i][j+1] && column[i][j] != "") {
+                cellArr[4*j+i].innerText = (Number(cellArr[4*j+i].innerText) * 2).toString();
+                cellArr[4*(j+1)+i].innerText = "";
+                high = Math.max(high,(Number(cellArr[4*j+i].innerText)));
+                score += Number(cellArr[4*j+i].innerText);
+                scoreText.innerText = score.toString().padStart(5,"0");
+                console.log(score);
+                console.log(high)
+            }
+        }
+    }
+}
+
+//Down
+//Up
+function goDown() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const column = colCombo.map(element => element.map(x => cellList[x]))
+    console.log(column)
+    console.log(cellList)
+    for (let i = 0; i < 4; i++){
+        let filterArr = column[i].filter(num => num)
+        console.log(filterArr)
+        for (let j = 0; j < filterArr.length;j++) {
+            cellArr[(4*(3-j)+i)].innerText = filterArr[j]
+        }
+        for (let k = 0; k < filterArr.length;  k++) {
+            cellArr[4*k+i].innerText = ""
+        }
+    }         
+}
+
+function combineDown() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const column = colCombo.map(element => element.map(x => cellList[x]))
+    for (let i = 0; i < 4; i++) {
+        for (let j = 3; j > 0; j--) {
+            if (column[i][j] == column[i][j-1] && column[i][j] != "") {
+                cellArr[4*j+i].innerText = (Number(cellArr[4*j+i].innerText) * 2).toString();
+                cellArr[4*(j-1)+i].innerText = "";
+                high = Math.max(high,(Number(cellArr[4*j+i].innerText)));
+                score += Number(cellArr[4*j+i].innerText);
+                scoreText.innerText = score.toString().padStart(5,"0");
+                console.log(score);
+                console.log(high)
+            }
+        }
+    }
+}
+
+//Add event handler
 buttonLeft.addEventListener("click", (event) => {
     event.preventDefault();
     goLeft();
@@ -145,12 +219,25 @@ buttonLeft.addEventListener("click", (event) => {
     goLeft();
     generateNum();
 })
-
 buttonRight.addEventListener("click", (event) => {
     event.preventDefault();
     goRight();
     combineRight();
     goRight();
+    generateNum()
+})
+buttonUp.addEventListener("click", (event) => {
+    event.preventDefault();
+    goUp();
+    combineUp();
+    goUp();
+    generateNum()
+})
+buttonDown.addEventListener("click", (event) => {
+    event.preventDefault();
+    goDown();
+    combineDown();
+    goDown();
     generateNum()
 })
 
