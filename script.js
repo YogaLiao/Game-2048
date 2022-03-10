@@ -121,7 +121,7 @@ function goRight() {
     console.log(row)
     console.log(cellList)
     for (let i = 0; i < 4; i++){
-        let filterArr = row[i].filter(num => num)
+        let filterArr = row[i].filter(num => num).reverse()
         console.log(filterArr)
         for (let j = filterArr.length - 1; j >= 0;j--) {
             cellArr[(4*i+3-j)].innerText = filterArr[j]
@@ -201,7 +201,7 @@ function goDown() {
     console.log(column)
     console.log(cellList)
     for (let i = 0; i < 4; i++){
-        let filterArr = column[i].filter(num => num)
+        let filterArr = column[i].filter(num => num).reverse();
         console.log(filterArr)
         if (filterArr.length != 4) {
         for (let j = 0; j < filterArr.length;j++) {
@@ -236,6 +236,7 @@ function combineDown() {
 //Add a function to link these functions with keyboard's arrows
 
 function control(e) {
+    e.preventDefault();
     if(e.keyCode === 37) {
       clickLeft()
     } else if (e.keyCode === 38) {
@@ -313,10 +314,12 @@ function changeColor() {
             x.style.background = "#ff8800"
         }
         else if (x.innerText == "1024") {
-            x.style.background = "#ff7b00"
+            x.style.background = "#ff7b00";
+            x.style.fontSize = "30px";
         }
         else if (x.innerText == "2048") {
-            x.style.background = "#ff7f00"
+            x.style.background = "#ff7f00";
+            x.style.fontSize = "30px";
         }
 
     })

@@ -49,43 +49,27 @@ body {
 }
 
 .main-page {
-    margin-top: 10%;
+    margin-top: 3%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: center;
 }
 
 .board {
-    width: 800px;
+    width: 720px;
+    height: 720px;;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 9%;
+    border: 3px dashed black;
 }
 .cell {
-    width:200px;
-    height: 200px;;
+    width:180px;
+    height: 180px;;
     background-color: #ffb703;
     border: 3px dashed black;
     text-align:center;
-    font-size: 300%;
+    font-size: 50px;
     color:black;
     box-sizing: border-box;
-}
-
-.direction {
-    width:36vw;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 5%;
-    margin-top: 5%;
-}
-
-.direc {
-    width:10vw;
-    height: 10vw;
-    font-size: 500%;
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
 }
 
 
