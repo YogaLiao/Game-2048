@@ -50,8 +50,6 @@ body {
 
 .main-page {
     margin-top: 10%;
-    width:90vw;
-    height: 60vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -69,7 +67,7 @@ body {
     background-color: #ffb703;
     border: 3px dashed black;
     text-align:center;
-    font-size: 500%;
+    font-size: 300%;
     color:black;
     box-sizing: border-box;
 }
@@ -90,37 +88,7 @@ body {
     text-align: center;
 }
 
+
 .style2{
     background-color: #ffea00;
-}
-
-.style4{
-    background-color: #ffdd00;
-}
-.style8{
-    background-color: #ffd000;
-}
-.style16{
-    background-color: #ffc300;
-}
-.style32{
-    background-color: #ffb700;
-}
-.style64{
-    background-color: #ffaa00;
-}
-.style128{
-    background-color: #ffa200;
-}
-.style256{
-    background-color: #ff9500;
-}
-.style512{
-    background-color: #ff8800;
-}
-.style1024{
-    background-color: #ff7b00;
-}
-.style2048{
-    background-color: #ff7f00;
 }
