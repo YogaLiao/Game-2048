@@ -31,7 +31,6 @@ let rowCombo = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
 let colCombo = [[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]]
 let indexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 let valueList = [2,4,8,16,32,64,128,256,511,1024,2048];
-let randomValue = valueList[Math.ceil(Math.random()*10)]
 
 //**<---------------------------------------
 //Initially we have two cells with number 2
@@ -49,95 +48,113 @@ cells[starter2].classList.add("style2");
 
 let high = 2;
 
+
 //Start to create functions
+//Each move will generate a new number
+
+function generateNum() {
+    let randomNum = Math.ceil(Math.random()*15);
+    if (cellArr[randomNum].innerText == "") {
+        let randomValue = valueList[Math.ceil(Math.random()*10)];
+        // console.log(randomValue)
+        cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
+    }
+    else {
+        randomNum = Math.ceil(Math.random()*15);
+    }
+}
+
 //Left
 
-function leftClick(event) {
-    event.preventDefault();
+function goLeft() {
     let cellList = Array.from(cells).map(element => element.innerText)
     const row = rowCombo.map(element => element.map(x => cellList[x]))
     console.log(row)
     console.log(cellList)
     console.log(row[3])
-    for (let i = 0; i < 4; i++)
-    {
-        if (row[i][0] == row[i][1] && row[i][0] !="") {
-            cellArr[i*4].innerText = (Number(row[i][0]) * 2).toString;
-            score += Number(row[i][0]) * 2;
-            high = Number(row[i][0]) * 2;
-            cellArr[(i*4 +1)].innerText = row[i][2];
-            cellArr[(i*4 +2)].innerText = row[i][3];
-            cellArr[(i*4 +3)].innerText  = "";
-        } 
-        else if (row[i][0] == "") {
-            if (row[i][1] == "" && row[i][2] == "" && row[i][3] != "") {
-                cellArr[i*4].innerText = row[i][3];
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] == "" && row[i][2] != "" && row[i][3] == row[i][2]) {
-                cellArr[i*4].innerText = (Number(row[i][2]) * 2).toString;
-                score += Number(row[i][2]) * 2;
-                high = Number(row[i][2]) * 2;
-                cellArr[(i*4 +2)].innerText  = "";
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] = "" && row[i][2] != "" && row[i][3] != row[i][2]) {
-                cellArr[i*4].innerText = row[i][2];
-                cellArr[(i*4 +1)].innerText = row[i][3];
-                cellArr[(i*4 +2)].innerText  = "";
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] != "" && row[i][2] == row[i][1]) {
-                cellArr[i*4].innerText = (Number(row[i][2]) * 2).toString;
-                score += Number(row[i][2]) * 2;
-                high = Number(row[i][2]) * 2;
-                cellArr[(i*4 +1)].innerText = row[i][3];
-                cellArr[(i*4 +2)].innerText  = "";
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] != "" && row[i][2] != row[i][1] && row[i][3] != row[i][2]) {
-                cellArr[i*4].innerText = row[i][1];
-                cellArr[(i*4 +1)].innerText = row[i][2];
-                cellArr[(i*4 +2)].innerText = row[i][3];
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] != "" && row[i][2] != row[i][1] && row[i][3] == row[i][2]) {
-                cellArr[i*4].innerText = row[i][1];
-                cellArr[(i*4 +1)].innerText = (Number(row[i][2]) * 2).toString;
-                cellArr[(i*4 +2)].innerText  = "";
-                cellArr[(i*4 +3)].innerText  = "";
-            }
-            else if (row[i][1] != "" && row[i][2] =="" && row[i][3] == row[i][1]) {
-                cellArr[i*4].innerText = (Number(row[i][1]) * 2).toString;
-                score += Number(row[i][1]) * 2;
-                high = Number(row[i][1]) * 2;
-                cellArr[(i*4 +1)].innerText  = "";
-                cellArr[(i*4 +3)].innerText  = "";
+    for (let i = 0; i < 4; i++){
+        let filterArr = row[i].filter(num => num)
+        console.log(filterArr)
+        for (let j = 0; j < filterArr.length;j++) {
+            cellArr[(4*i+j)].innerText = filterArr[j]
+        }
+        for (let k = filterArr.length; k < 4; k++) {
+            cellArr[4*i+k].innerText = ""
+        }
+    }         
+}
+
+function combineLeft() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const row = rowCombo.map(element => element.map(x => cellList[x]))
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (row[i][j] == row[i][j+1] && row[i][j] != "") {
+                cellArr[4*i+j].innerText = (Number(cellArr[4*i+j].innerText) * 2).toString();
+                cellArr[4*i+j+1].innerText = "";
+                high = Math.max(high,(Number(cellArr[4*i+j].innerText)));
+                score += Number(cellArr[4*i+j].innerText);
+                scoreText.innerText = score.toString().padStart(5,"0");
+                console.log(score);
+                console.log(high)
             }
         }
-        console.log(cellList)
     }
 }
 
-buttonLeft.addEventListener("click", leftClick)
+//Right
+function goRight() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const row = rowCombo.map(element => element.map(x => cellList[x]))
+    console.log(row)
+    console.log(cellList)
+    for (let i = 0; i < 4; i++){
+        let filterArr = row[i].filter(num => num)
+        console.log(filterArr)
+        for (let j = 0; j < filterArr.length;j++) {
+            cellArr[(4*i+3-j)].innerText = filterArr[j]
+        }
+        for (let k = 0; k < filterArr.length; k++) {
+            cellArr[4*i+k].innerText = ""
+        }
+    }         
+}
 
-// window.addEventListener("keydown", function (event) {
-//     if (event.defaultPrevented) {
-//       return; // Do nothing if the event was already processed
-//     }
-  
-//     switch (event.key) {
-//       case "Left": // IE/Edge specific value
-//       case "ArrowLeft":
-//         // Do something for "down arrow" key press.
-//         break;
-//       default:
-//         return; // Quit when this doesn't handle the key event.
-//     }
-  
-//     // Cancel the default action to avoid it being handled twice
-//     event.preventDefault();
-//   }, true);
+function combineRight() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const row = rowCombo.map(element => element.map(x => cellList[x]))
+    for (let i = 0; i < 4; i++) {
+        for (let j = 3; j > 0; j--) {
+            if (row[i][j] == row[i][j-1] && row[i][j] != "") {
+                cellArr[4*i+j].innerText = (Number(cellArr[4*i+j].innerText) * 2).toString();
+                cellArr[4*i+j-1].innerText = "";
+                high = Math.max(high,(Number(cellArr[4*i+j].innerText)));
+                score += Number(cellArr[4*i+j].innerText);
+                scoreText.innerText = score.toString().padStart(5,"0");
+                console.log(score);
+                console.log(high)
+            }
+        }
+    }
+}
+
+buttonLeft.addEventListener("click", (event) => {
+    event.preventDefault();
+    goLeft();
+    combineLeft();
+    goLeft();
+    generateNum();
+})
+
+buttonRight.addEventListener("click", (event) => {
+    event.preventDefault();
+    goRight();
+    combineRight();
+    goRight();
+    generateNum()
+})
+
+
 
 
 
