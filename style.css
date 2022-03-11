@@ -1,6 +1,6 @@
 body {
     background-color:#ffb703;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'BRONSON', sans-serif;                           
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@ a{
 .start-button {
     background-color: black;
     color:#ffb703;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Neusharp', sans-serif;                                              
     border-radius:10px;
     display: inline-block;
     border: 1px solid;

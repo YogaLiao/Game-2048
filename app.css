@@ -1,24 +1,14 @@
 body {
     background-color:#ffb703;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Neusharp', sans-serif;                                             
     height: 100vh;
     width:100vw;
     margin:2%
 }
 
-.span,.score {
-    font-size: 2em;
-}
-
-.span {
-    flex:0.7;
-}
-
-.score {
-    background-color: black;
-    color:#ffb703;
-    flex-shrink: 1;
-}
+/* .span,.score {
+    font-size: 1.5em;
+} */
 
 .header {
     display: flex;
@@ -27,17 +17,30 @@ body {
     justify-content: space-evenly;
     
 }
-.new,.score-board,.help, .play-again {
+
+.span {
+    flex:0.7;
+    font-size: 2em;
+}
+
+.score {
     background-color: black;
     color:#ffb703;
-    font-family: 'Press Start 2P', cursive;
+    flex-shrink: 1;
+}
+
+
+.new,.score-board,.help, .play-again, .back {
+    background-color: black;
+    color:#ffb703;
+    font-family: 'Neusharp', sans-serif;                                              
     font-size: 1.5em;
 }
-.help, .new, .play-again {
+.help, .new, .play-again, .back {
     transition: color 0.25s, border-color 0.25s, box-shadow 0.25s
 }
 
-.help:hover,.new:hover,.help:focus,.new:focus, .play-again:hover, .play-again:focus {
+.help:hover,.new:hover,.help:focus,.new:focus, .play-again:hover, .play-again:focus, .back:hover, .back:focus {
     border-color: white;
     color: #ffb703;
     box-shadow: 0 0.5em 0.5em -0.4em white;
@@ -52,7 +55,7 @@ body {
 }
 
 .main-page {
-    margin-top: 3%;
+    margin-top: 5px;
     display: flex;
     justify-content: center;
 }
@@ -67,12 +70,13 @@ body {
 .cell {
     width:180px;
     height: 180px;;
-    background-color: #ffb703;
+    background-color: #ffef9f;
     border: 3px dashed black;
     text-align:center;
     font-size: 50px;
     color:black;
     box-sizing: border-box;
+    transition: background-color 0.8s;
 }
 
 .gameover {
@@ -81,9 +85,9 @@ body {
     align-items: center;
     justify-content: space-around;
     width: 800px;
-    background-color: #ffb703;
+    background-color: #ffef9f;
     height: 500px;
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 10%;
     border: 5px solid black;
     padding: 20px;
@@ -94,4 +98,19 @@ body {
     font-size:50px;
     line-height: 2;
     margin-top: 10px;;
+}
+
+.help-board {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 800px;
+    background-color: #ffef9f;
+    height: 500px;
+    margin-top: 50px;
+    border-radius: 10%;
+    border: 5px solid black;
+    padding: 20px;
+    line-height: 2;
 }

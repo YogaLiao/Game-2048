@@ -23,18 +23,22 @@ let score = 0;
 
 let newButton = document.querySelector(".new");
 let helpButton = document.querySelector(".help");
-let playAgainButton = document.querySelector(".play-again")
+let playAgainButton = document.querySelector(".play-again");
+let backButton = document.querySelector(".back")
 
 let board = document.querySelector(".board")
 let gameover = document.querySelector(".gameover");
-let gameoverText = document.querySelector(".gameover-text")
+let gameoverText = document.querySelector(".gameover-text");
+let help = document.querySelector(".help-board")
+
+
 
 let rowCombo = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
 let colCombo = [[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]]
 let adjCombo = [[0,1],[1,2],[2,3],[4,5],[5,6],[6,7],[8,9],[9,10],[10,11],[12,13],[13,14],[14,15],[0,4],[4,8],[8,12],[1,5],[5,9],
                 [9,13],[2,6],[6,10],[10,14],[3,7],[7,11],[11,15]]
 let indexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-let valueList = [2,4,8,16,32];
+let valueList = [2,4];
 
 //**<---------------------------------------
 //Initially we have two cells with number 2
@@ -72,7 +76,7 @@ function generateNum() {
     let randomNum = emptyArr[randomIndex];
     console.log(randomIndex)
     console.log(randomNum)
-    let randomValue = valueList[Math.ceil(Math.random()*4)];
+    let randomValue = valueList[Math.ceil(Math.random()*2)];
     console.log(randomValue)
     cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
     
@@ -346,7 +350,7 @@ function changeColor() {
     let cellArr = Array.from(cells);
     cellArr.forEach(x => {
         if (x.innerText == "") {
-            x.style.background = "#ffb703";
+            x.style.background = "#ffef9f";
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "2") {
@@ -387,11 +391,11 @@ function changeColor() {
         }
         else if (x.innerText == "1024") {
             x.style.background = "#ff5400";
-            x.style.fontSize = "30px";
+            x.style.fontSize = "40px";
         }
         else if (x.innerText == "2048") {
             x.style.background = "#ff4800";
-            x.style.fontSize = "30px";
+            x.style.fontSize = "40px";
         }
 
     })
@@ -408,6 +412,19 @@ playAgainButton.addEventListener("click", event=>{
     event.preventDefault();
     newGame();
 })
+
+helpButton.addEventListener("click", event=>{
+    event.preventDefault();
+    board.style.display = "none";
+    help.style.display = "flex";
+})
+backButton.addEventListener("click", event=>{
+    event.preventDefault();
+    help.style.display = "none";
+    board.style.display = "flex";
+})
+
+
 
 
 
