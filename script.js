@@ -31,6 +31,8 @@ let gameoverText = document.querySelector(".gameover-text")
 
 let rowCombo = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
 let colCombo = [[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]]
+let adjCombo = [[0,1],[1,2],[2,3],[4,5],[5,6],[6,7],[8,9],[9,10],[10,11],[12,13],[13,14],[14,15],[0,4],[4,8],[8,12],[1,5],[5,9],
+                [9,13],[2,6],[6,10],[10,14],[3,7],[7,11],[11,15]]
 let indexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 let valueList = [2,4,8,16,32];
 
@@ -274,6 +276,7 @@ function clickLeft() {
     generateNum();
     changeColor();
     checkWin();
+    checkLose()
 }
 
 function clickRight() {
@@ -283,6 +286,7 @@ function clickRight() {
     generateNum();
     changeColor();
     checkWin();
+    checkLose()
 }
 
 function clickUp() {
@@ -292,6 +296,7 @@ function clickUp() {
     generateNum();
     changeColor();
     checkWin();
+    checkLose()
 }
 
 function clickDown() {
@@ -301,6 +306,7 @@ function clickDown() {
     generateNum();
     changeColor();
     checkWin();
+    checkLose()
 }
 
 function checkWin() {
@@ -311,6 +317,30 @@ function checkWin() {
         gameoverText.innerText = "Congratulations! You Win!"},300
         )}
 }
+
+function checkLose() {
+    let cellList = Array.from(cells).map(element => element.innerText)
+    const adjacent = adjCombo.map(element => element.map(x => cellList[x]));
+    console.log(adjacent);
+    let filterArr = cellList.filter(num => num);
+    let count = 0;
+    console.log(filterArr)
+    if (filterArr.length == 16) {
+        for (i=0;i<24;i++) {
+            if (adjacent[i][0] == adjacent[i][1]) {
+                count ++;
+            }
+        }
+        if (count == 0) {
+            setTimeout(function() {
+                board.style.display = "none";
+                gameover.style.display = "flex";
+                gameoverText.innerText = "Let's try again!"},1000
+                )
+        }
+    }
+}
+
 
 function changeColor() {
     let cellArr = Array.from(cells);
