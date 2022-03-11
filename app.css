@@ -27,23 +27,26 @@ body {
     justify-content: space-evenly;
     
 }
-.new,.score-board,.help {
+.new,.score-board,.help, .play-again {
     background-color: black;
     color:#ffb703;
     font-family: 'Press Start 2P', cursive;
     font-size: 1.5em;
 }
-.help, .new {
+.help, .new, .play-again {
     transition: color 0.25s, border-color 0.25s, box-shadow 0.25s
 }
 
-.help:hover,.new:hover,.help:focus,.new:focus {
+.help:hover,.new:hover,.help:focus,.new:focus, .play-again:hover, .play-again:focus {
     border-color: white;
     color: #ffb703;
     box-shadow: 0 0.5em 0.5em -0.4em white;
     cursor: pointer;
 }
 
+.play-again {
+    height:50px;
+}
 .score {
     vertical-align: middle;
 }
@@ -57,7 +60,7 @@ body {
 .board {
     width: 720px;
     height: 720px;;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     border: 3px dashed black;
 }
@@ -72,7 +75,15 @@ body {
     box-sizing: border-box;
 }
 
-
-.style2{
-    background-color: #ffea00;
+.gameover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 800px;
+    background-color: #ffb703;
+    height: 500px;
+    margin-top: 100px;
+    border-radius: 10%;
+    border: 5px solid black
 }

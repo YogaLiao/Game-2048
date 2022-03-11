@@ -21,18 +21,20 @@ console.log(cells)
 let scoreText = document.querySelector(".score")
 let score = 0;
 
-let buttonUp = document.getElementById("up")
-let buttonDown = document.getElementById("down")
-let buttonLeft = document.getElementById("left")
-let buttonRight = document.getElementById("right")
+let newButton = document.querySelector(".new");
+let helpButton = document.querySelector(".help")
+
+let gameover = document.querySelector(".gameover");
+let gameoverText = document.querySelector(".gamever-text")
 
 let rowCombo = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
 let colCombo = [[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]]
 let indexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-let valueList = [2,4,8,16,32,64,128,256,511,1024,2048];
+let valueList = [2,4,8,16,32,64];
 
 //**<---------------------------------------
 //Initially we have two cells with number 2
+function startGame() {
 let starter1 = Math.ceil(Math.random()*15)
 let starter2 = Math.ceil(Math.random()*15)
 
@@ -42,10 +44,10 @@ if (starter1 == starter2) {
 cells[starter1].innerText = "2";
 cells[starter2].innerText = "2";
 
-cells[starter1].classList.add("style2");
-cells[starter2].classList.add("style2");
-
+changeColor();
+}
 let high = 2;
+startGame();
 
 
 //Start to create functions
@@ -66,9 +68,9 @@ function generateNum() {
     let randomNum = emptyArr[randomIndex];
     console.log(randomIndex)
     console.log(randomNum)
-    let randomValue = valueList[Math.ceil(Math.random()*10)];
+    let randomValue = valueList[Math.ceil(Math.random()*5)];
     console.log(randomValue)
-    cellArr[randomNum].innerText = Math.min(high,randomValue,64).toString()
+    cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
     
 }
 
@@ -233,6 +235,19 @@ function combineDown() {
     }
 }
 
+//Create a function to restart the game anytime
+
+function newGame() {
+    score = 0;
+    scoreText.innerText = "0000000";
+    high = 2;
+    let cellArr = Array.from(cells);
+    console.log(cellArr);
+    cellArr.forEach(element => {
+        element.innerText = "";
+})
+    startGame();
+}
 //Add a function to link these functions with keyboard's arrows
 
 function control(e) {
@@ -280,6 +295,11 @@ function clickDown() {
     changeColor()
 }
 
+function checkWin() {
+    if (high == 2048) {
+
+    }
+}
 function changeColor() {
     let cellArr = Array.from(cells);
     cellArr.forEach(x => {
@@ -328,39 +348,10 @@ function changeColor() {
 
 document.addEventListener('keyup', control)
 
-buttonLeft.addEventListener("click", (event) => {
+newButton.addEventListener("click", event=>{
     event.preventDefault();
-    goLeft();
-    combineLeft();
-    goLeft();
-    generateNum();
-    changeColor()
+    newGame();
 })
-buttonRight.addEventListener("click", (event) => {
-    event.preventDefault();
-    goRight();
-    combineRight();
-    goRight();
-    generateNum()
-    changeColor()
-})
-buttonUp.addEventListener("click", (event) => {
-    event.preventDefault();
-    goUp();
-    combineUp();
-    goUp();
-    generateNum()
-    changeColor()
-})
-buttonDown.addEventListener("click", (event) => {
-    event.preventDefault();
-    goDown();
-    combineDown();
-    goDown();
-    generateNum()
-    changeColor()
-})
-
 
 
 
