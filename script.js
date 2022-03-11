@@ -354,43 +354,43 @@ function changeColor() {
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "4") {
-            x.style.background = "#ffdd00";
+            x.style.background = "#ffb600";
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "8") {
-            x.style.background = "#ffd000";
-            x.style.fontSize = "50px";
-        }
-        else if (x.innerText == "16") {
-            x.style.background = "#ffc300";
-            x.style.fontSize = "50px";
-        }
-        else if (x.innerText == "32") {
-            x.style.background = "#ffb700";
-            x.style.fontSize = "50px";
-        }
-        else if (x.innerText == "64") {
             x.style.background = "#ffaa00";
             x.style.fontSize = "50px";
         }
+        else if (x.innerText == "16") {
+            x.style.background = "#ff9e00";
+            x.style.fontSize = "50px";
+        }
+        else if (x.innerText == "32") {
+            x.style.background = "#ff9100";
+            x.style.fontSize = "50px";
+        }
+        else if (x.innerText == "64") {
+            x.style.background = "#ff8500";
+            x.style.fontSize = "50px";
+        }
         else if (x.innerText == "128") {
-            x.style.background = "#ffa200";
+            x.style.background = "#ff7900";
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "256") {
-            x.style.background = "#ff9500";
+            x.style.background = "#ff6d00";
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "512") {
-            x.style.background = "#ff8800";
+            x.style.background = "#ff6000";
             x.style.fontSize = "50px";
         }
         else if (x.innerText == "1024") {
-            x.style.background = "#ff7b00";
+            x.style.background = "#ff5400";
             x.style.fontSize = "30px";
         }
         else if (x.innerText == "2048") {
-            x.style.background = "#ff7f00";
+            x.style.background = "#ff4800";
             x.style.fontSize = "30px";
         }
 
