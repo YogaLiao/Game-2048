@@ -22,15 +22,17 @@ let scoreText = document.querySelector(".score")
 let score = 0;
 
 let newButton = document.querySelector(".new");
-let helpButton = document.querySelector(".help")
+let helpButton = document.querySelector(".help");
+let playAgainButton = document.querySelector(".play-again")
 
+let board = document.querySelector(".board")
 let gameover = document.querySelector(".gameover");
-let gameoverText = document.querySelector(".gamever-text")
+let gameoverText = document.querySelector(".gameover-text")
 
 let rowCombo = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
 let colCombo = [[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]]
 let indexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-let valueList = [2,4,8,16,32,64];
+let valueList = [2,4,8,16,32];
 
 //**<---------------------------------------
 //Initially we have two cells with number 2
@@ -68,7 +70,7 @@ function generateNum() {
     let randomNum = emptyArr[randomIndex];
     console.log(randomIndex)
     console.log(randomNum)
-    let randomValue = valueList[Math.ceil(Math.random()*5)];
+    let randomValue = valueList[Math.ceil(Math.random()*4)];
     console.log(randomValue)
     cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
     
@@ -238,6 +240,8 @@ function combineDown() {
 //Create a function to restart the game anytime
 
 function newGame() {
+    board.style.display = "flex";
+    gameover.style.display = "none";
     score = 0;
     scoreText.innerText = "0000000";
     high = 2;
@@ -268,70 +272,88 @@ function clickLeft() {
     combineLeft();
     goLeft();
     generateNum();
-    changeColor()
+    changeColor();
+    checkWin();
 }
 
 function clickRight() {
     goRight();
     combineRight();
     goRight();
-    generateNum()
-    changeColor()
+    generateNum();
+    changeColor();
+    checkWin();
 }
 
 function clickUp() {
     goUp();
     combineUp();
     goUp();
-    generateNum()
-    changeColor()
+    generateNum();
+    changeColor();
+    checkWin();
 }
 
 function clickDown() {
     goDown();
     combineDown();
     goDown();
-    generateNum()
-    changeColor()
+    generateNum();
+    changeColor();
+    checkWin();
 }
 
 function checkWin() {
     if (high == 2048) {
-
-    }
+        setTimeout(function() {
+        board.style.display = "none";
+        gameover.style.display = "flex";
+        gameoverText.innerText = "Congratulations! You Win!"},300
+        )}
 }
+
 function changeColor() {
     let cellArr = Array.from(cells);
     cellArr.forEach(x => {
         if (x.innerText == "") {
-            x.style.background = "#ffb703" 
+            x.style.background = "#ffb703";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "2") {
-            x.style.background = "#ffea00"
+            x.style.background = "#ffea00";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "4") {
-            x.style.background = "#ffdd00"
+            x.style.background = "#ffdd00";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "8") {
-            x.style.background = "#ffd000"
+            x.style.background = "#ffd000";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "16") {
-            x.style.background = "#ffc300"
+            x.style.background = "#ffc300";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "32") {
-            x.style.background = "#ffb700"
+            x.style.background = "#ffb700";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "64") {
-            x.style.background = "#ffaa00"
+            x.style.background = "#ffaa00";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "128") {
-            x.style.background = "#ffa200"
+            x.style.background = "#ffa200";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "256") {
-            x.style.background = "#ff9500"
+            x.style.background = "#ff9500";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "512") {
-            x.style.background = "#ff8800"
+            x.style.background = "#ff8800";
+            x.style.fontSize = "50px";
         }
         else if (x.innerText == "1024") {
             x.style.background = "#ff7b00";
@@ -352,6 +374,12 @@ newButton.addEventListener("click", event=>{
     event.preventDefault();
     newGame();
 })
+playAgainButton.addEventListener("click", event=>{
+    event.preventDefault();
+    newGame();
+})
+
+
 
 
 
