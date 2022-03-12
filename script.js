@@ -20,6 +20,8 @@ console.log(cells)
 // console.log(cellArr[2])
 let scoreText = document.querySelector(".score")
 let score = 0;
+let bestScore = document.querySelector(".best")
+let best = 0;
 
 let newButton = document.querySelector(".new");
 let helpButton = document.querySelector(".help");
@@ -55,6 +57,7 @@ cells[starter2].innerText = "2";
 changeColor();
 }
 let high = 2;
+
 startGame();
 
 
@@ -76,7 +79,7 @@ function generateNum() {
     let randomNum = emptyArr[randomIndex];
     console.log(randomIndex)
     console.log(randomNum)
-    let randomValue = valueList[Math.ceil(Math.random()*2)];
+    let randomValue = valueList[Math.round(Math.random())];
     console.log(randomValue)
     cellArr[randomNum].innerText = Math.min(high,randomValue).toString()
     
@@ -202,7 +205,6 @@ function combineUp() {
 }
 
 //Down
-//Up
 function goDown() {
     let cellArr = Array.from(cells);
     let cellList = Array.from(cells).map(element => element.innerText)
@@ -318,6 +320,8 @@ function checkWin() {
         setTimeout(function() {
         board.style.display = "none";
         gameover.style.display = "flex";
+        best = Math.max(score,best);
+        bestScore.innerText = best.toString().padStart(7,"0");
         gameoverText.innerText = "Congratulations! You Win!"},300
         )}
 }
@@ -337,9 +341,12 @@ function checkLose() {
         }
         if (count == 0) {
             setTimeout(function() {
+                best = Math.max(score,best);
+                console.log(best);
+                bestScore.innerText = best.toString().padStart(7,"0");
                 board.style.display = "none";
                 gameover.style.display = "flex";
-                gameoverText.innerText = "Let's try again!"},1000
+                gameoverText.innerText = "OOOps, Game over! Let's try again!"},1000
                 )
         }
     }
