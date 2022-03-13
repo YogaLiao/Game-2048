@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     background-color:#ffb703;
     font-family: 'Neusharp', sans-serif;                                             
     height: 100vh;
