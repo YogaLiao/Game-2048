@@ -1,7 +1,7 @@
 body {
     overflow: hidden;
     background-color:#ffb703;
-    font-family: 'Neusharp', sans-serif;                                             
+    font-family: 'Varela Round', sans-serif;                                         
     height: 100vh;
     width:100vw;
     margin:2%
@@ -36,7 +36,7 @@ body {
 .new,.score-board,.help, .play-again, .back, .best-board {
     background-color: black;
     color:#ffb703;
-    font-family: 'Neusharp', sans-serif;                                              
+    font-family: 'Hubballi', cursive;                                              
     font-size: 1.5em;
 }
 .help, .new, .play-again, .back {

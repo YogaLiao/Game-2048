@@ -1,6 +1,6 @@
 body {
     background-color:#ffb703;
-    font-family: 'BRONSON', sans-serif;                           
+    font-family: 'Varela Round', sans-serif;                    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +23,7 @@ a{
 .start-button {
     background-color: black;
     color:#ffb703;
-    font-family: 'Neusharp', sans-serif;                                              
+    font-family: 'Varela Round', sans-serif;                                            
     border-radius:10px;
     display: inline-block;
     border: 1px solid;
