@@ -12,10 +12,12 @@ a{
     color:#ffb703
 
 }
+
 .index-title {
     font-size: 1500%;
     text-align: center;
     padding: 0.5em 1em;
+    text-shadow:  white 5px 5px 10px;
 }
 
 .start-button {

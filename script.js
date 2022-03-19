@@ -1,19 +1,3 @@
-let cell1 = document.getElementById("cell1")
-let cell2 = document.getElementById("cell2")
-let cell3 = document.getElementById("cell3")
-let cell4 = document.getElementById("cell4")
-let cell5 = document.getElementById("cell5")
-let cell6 = document.getElementById("cell6")
-let cell7 = document.getElementById("cell7")
-let cell8 = document.getElementById("cell8")
-let cell9 = document.getElementById("cell9")
-let cell10 = document.getElementById("cell10")
-let cell11 = document.getElementById("cell11")
-let cell12 = document.getElementById("cell12")
-let cell13 = document.getElementById("cell13")
-let cell14 = document.getElementById("cell14")
-let cell15 = document.getElementById("cell15")
-let cell16 = document.getElementById("cell16")
 let cells = document.querySelectorAll(".cell")
 console.log(cells)
 // console.log(cellList)
@@ -56,6 +40,7 @@ cells[starter2].innerText = "2";
 
 changeColor();
 }
+
 let high = 2;
 
 startGame();
@@ -346,7 +331,7 @@ function checkLose() {
                 bestScore.innerText = best.toString().padStart(7,"0");
                 board.style.display = "none";
                 gameover.style.display = "flex";
-                gameoverText.innerText = "OOOps, Game over! Let's try again!"},1000
+                gameoverText.innerText = "OOOps, Game over!       Let's try again!"},1000
                 )
         }
     }
