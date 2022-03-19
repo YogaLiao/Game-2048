@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: 'Varela Round', sans-serif;
+    src: url('/Varela_Round/VarelaRound-Regular.ttf') format('truetype');
+}
+
 body {
     background-color:#ffb703;
     font-family: 'Varela Round', sans-serif;                    
