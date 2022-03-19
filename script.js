@@ -409,6 +409,7 @@ helpButton.addEventListener("click", event=>{
     event.preventDefault();
     board.style.display = "none";
     help.style.display = "flex";
+    gameover.style.display = "none"
 })
 backButton.addEventListener("click", event=>{
     event.preventDefault();
