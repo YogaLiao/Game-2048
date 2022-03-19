@@ -9,9 +9,9 @@ Welcome! This is a webpage game, a very popular tile game 2048! It's created usi
 ![image](https://user-images.githubusercontent.com/97146317/159106995-3dabb515-6046-483c-abeb-b541b07bf3ba.png)
 
 ## Technologies
-HTML
-CSS
-JavaScript
+- HTML
+- CSS
+- JavaScript
 
 ## User Stories
 #### Start the game
