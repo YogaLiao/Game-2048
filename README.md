@@ -1,6 +1,6 @@
 # 2048
 Welcome! This is a very popular webpage tile game 2048! It's created using HTML, CSS and JavaScript.
-Go ahead to play [here](https://yogaliao.github.io/Game-2048/)
+Go ahead to play [here](https://yogaliao.github.io/Game-2048/)!
 ## Introduction
 2048 is a simple mathematical sliding-block puzzle game based on the powers of two. Sliding block puzzle games are not new, with pictorial puzzles being the most widely known. However, this was the first one with a mathematical leaning to become as popular as it did. 
 
